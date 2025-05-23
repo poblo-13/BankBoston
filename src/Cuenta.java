@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package bankboston;
-
-/**
- *
- * @author Pablo
- */
 public class Cuenta {
+    
     private String numeroCuenta;
     private int saldo;
 
     public Cuenta(String numeroCuenta) {
+        if (numeroCuenta == null || !numeroCuenta.matches("\\d{9}")) {
+            throw new IllegalArgumentException("Número de cuenta debe tener exactamente 9 dígitos.");
+        }
         this.numeroCuenta = numeroCuenta;
         this.saldo = 0;
     }

@@ -1,14 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package bankboston;
-
-/**
- *
- * @author Pablo
- */
 public class Cliente {
+    
     private String rut;
     private String nombre;
     private String apellidoPaterno;
@@ -35,12 +26,14 @@ public class Cliente {
             this.rut = rut;
             return true;
         } else {
-            System.out.println("RUT inválido. El formato debe ser con puntos y guion. Ejemplo: 12.345.678-9");
+            System.out.println("RUT inválido. El formato debe ser con puntos y guion y longitud 11 a 12.");
             return false;
         }
     }
 
     public static boolean rutValido(String rut) {
+        if (rut == null) return false;
+        if (rut.length() < 11 || rut.length() > 12) return false;
         return rut.matches("^\\d{1,2}\\.\\d{3}\\.\\d{3}-[\\dkK]$");
     }
 

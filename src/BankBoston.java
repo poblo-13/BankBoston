@@ -1,20 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package bankboston;
-
 import java.util.Scanner;
 
-/**
- *
- * @author Pablo
- */
 public class BankBoston {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Cliente cliente = null;
@@ -43,7 +30,7 @@ public class BankBoston {
                         rut = sc.nextLine();
                         rutValido = Cliente.rutValido(rut);
                         if (!rutValido) {
-                            System.out.println("RUT inválido. El formato debe ser con puntos y guion. Ejemplo: 12.345.678-9");
+                            System.out.println("RUT inválido. El formato debe ser con puntos y guion y longitud 11 a 12.");
                         }
                     } while (!rutValido);
 
@@ -59,8 +46,19 @@ public class BankBoston {
                     String comuna = sc.nextLine();
                     System.out.print("Teléfono: ");
                     String telefono = sc.nextLine();
-                    System.out.print("Número de Cuenta (9 dígitos): ");
-                    String numCuenta = sc.nextLine();
+
+                    String numCuenta = "";
+                    boolean cuentaValida = false;
+                    do {
+                        System.out.print("Número de Cuenta (9 dígitos): ");
+                        numCuenta = sc.nextLine();
+                        try {
+                            new Cuenta(numCuenta);
+                            cuentaValida = true;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    } while (!cuentaValida);
 
                     cliente = new Cliente(rut, nombre, apPaterno, apMaterno, domicilio, comuna, telefono, numCuenta);
                     System.out.println("Cliente registrado exitosamente.");
